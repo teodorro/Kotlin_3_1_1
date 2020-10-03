@@ -1,0 +1,4 @@
+package attachments
+
+class Video {
+}
