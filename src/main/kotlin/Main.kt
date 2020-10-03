@@ -9,10 +9,15 @@ fun main() {
     WallService.print()
 }
 
+//fun getComment1(post: Post): Comment {
+//    return Comment(id = 23, postId = post.id, from_id = 1, date = 1, text = "my comment",
+//        reply_to_comment = 1, reply_to_user = 1, attachments = AudioAttachment("audio", Audio()), parents_stack = emptyArray(),
+//        thread = PostsThread(count = 1, items = emptyArray(), can_post = true, show_reply_button = true, groups_can_post = true))
+//}
 fun getComment1(post: Post): Comment {
-    return Comment(id = 23, postId = post.id, from_id = 1, date = 1, text = "my comment",
-        reply_to_comment = 1, reply_to_user = 1, attachments = AudioAttachment("audio", Audio()), parents_stack = emptyArray(),
-        thread = PostsThread(count = 1, items = emptyArray(), can_post = true, show_reply_button = true, groups_can_post = true))
+    return Comment(id = 23, postId = post.id, owner_id = 1, message = "my comment",
+        reply_to_comment = 1, attachments = AudioAttachment("audio", Audio()),
+        from_group = 1, sticker_id = 1)
 }
 
 fun getPost1(id: Int): Post{

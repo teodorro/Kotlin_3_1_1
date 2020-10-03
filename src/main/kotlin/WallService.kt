@@ -1,7 +1,11 @@
+import Exceptions.CommentNotFoundException
+import Exceptions.PostNotFoundException
+
 object WallService {
     private var nextId: Int = 1
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comment>()
+    private var reports = emptyArray<Report>()
 
     fun add(post: Post): Post{
         post.id = nextId++
@@ -49,6 +53,19 @@ object WallService {
             }
         }
         throw PostNotFoundException();
+    }
+
+    fun reportComment(owner_id: Int, comment_id: Int, reason: Int) : Boolean{
+        if (reason !in 0..8)
+            throw IndexOutOfBoundsException("Value of 'reason' argument is out of range");
+
+        for (comment in comments){
+            if (comment.id == comment_id && comment.owner_id == owner_id){
+                reports += Report(owner_id = owner_id, comment_id = comment_id, reason = reason)
+                return true;
+            }
+        }
+        throw CommentNotFoundException("Comment with id = ${comment_id} and owner_id = ${owner_id} was not found")
     }
 
 }
